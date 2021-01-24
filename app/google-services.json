@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "565925159806",
+    "project_id": "androx-messenger",
+    "storage_bucket": "androx-messenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565925159806:android:43bf437c97b6e02ecfc92f",
+        "android_client_info": {
+          "package_name": "com.example.androxmessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565925159806-h9mv674iekgofkfugtg020uva3fubpb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXETnVy8cEXcZJThANOsHH6liRVIG50oA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565925159806-h9mv674iekgofkfugtg020uva3fubpb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
