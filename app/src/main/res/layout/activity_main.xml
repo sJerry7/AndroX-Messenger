@@ -20,8 +20,6 @@
         app:tabMaxWidth="0dp"
         app:tabGravity="fill"
         app:tabMode="fixed"
-
-
         />
 
     <androidx.viewpager.widget.ViewPager

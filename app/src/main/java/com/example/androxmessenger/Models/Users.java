@@ -1,8 +1,10 @@
 package com.example.androxmessenger.Models;
 
 public class Users {
-
-    String profilepic, userName, mail, password, userId, lastMessage;
+//
+//    private static String profilepic;
+//    private static String userName;
+    String profilepic,userName, mail, password, userId, lastMessage;
 
     public Users(String profilepic, String userName, String mail, String password, String userId, String lastMessage) {
         this.profilepic = profilepic;
@@ -30,12 +32,12 @@ public class Users {
         this.profilepic = profilepic;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getMail() {
@@ -54,7 +56,7 @@ public class Users {
         this.password = password;
     }
 
-    public String getUserId() {
+    public String getUserId(String key) {
         return userId;
     }
 

@@ -12,11 +12,6 @@ import com.example.androxmessenger.Fragments.StatusFragments;
 
 public class FragmentAdapter extends FragmentPagerAdapter {
 
-
-    public FragmentAdapter(@NonNull FragmentManager fm, int behavior) {
-        super(fm, behavior);
-    }
-
     public FragmentAdapter(FragmentManager supportFragmentManager) {
         super(supportFragmentManager);
     }
@@ -40,6 +35,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
+
         return 3;
     }
 

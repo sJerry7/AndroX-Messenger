@@ -13,9 +13,11 @@ import android.widget.Toast;
 import com.example.androxmessenger.Adapters.FragmentAdapter;
 import com.example.androxmessenger.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-       ActivityMainBinding binding1;
+       ActivityMainBinding binding;
 
        FirebaseAuth mauth;
 
@@ -24,13 +26,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding1 = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding1.getRoot());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = db.getReference("message");
+        myRef.setValue("Hello World");
         //getSupportActionBar().hide();
 
         mauth = FirebaseAuth.getInstance();
-        binding1.viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
-        binding1.tabLayout.setupWithViewPager(binding1.viewPager);
+        binding.viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
 
     }
 
