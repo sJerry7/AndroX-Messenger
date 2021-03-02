@@ -1,6 +1,7 @@
 package com.example.androxmessenger.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androxmessenger.ChatDetailActivity;
 import com.example.androxmessenger.Models.Users;
 import com.example.androxmessenger.R;
 import com.squareup.picasso.Picasso;
@@ -38,6 +40,21 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>{
         Users users = list.get(position);
         Picasso.get().load(users.getProfilepic()).placeholder(R.drawable.user).into(holder.image);
         holder.userName.setText(users.getUserName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ChatDetailActivity.class);
+                intent.putExtra("userId",users.getUserId());
+                intent.putExtra("profilePic",users.getProfilepic());
+                intent.putExtra("userName",users.getUserName());
+                context.startActivity(intent);
+
+            }
+        });
+
+
+
     }
 
     @Override

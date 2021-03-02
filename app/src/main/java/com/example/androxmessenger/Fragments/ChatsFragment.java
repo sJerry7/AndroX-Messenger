@@ -40,16 +40,12 @@ public class ChatsFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentChatsBinding.inflate(inflater, container, false);
         db = FirebaseDatabase.getInstance();
-// ========       -----
-//        DividerItemDecoration itemDecor = new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL);
-//        binding.chatRecyclerView.addItemDecoration(itemDecor);
-// -------------
         UsersAdapter adapter = new UsersAdapter(list, getContext());
         binding.chatRecyclerView.setAdapter(adapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
-//        binding.chatRecyclerView.setLayoutManager(layoutManager);
+        binding.chatRecyclerView.setLayoutManager(layoutManager);
 //        binding.chatRecyclerView.addItemDecoration( new LayoutMarginDecoration( 1, 8 ) );
 
         db.getReference().child("Users").addValueEventListener(new ValueEventListener() {
@@ -58,7 +54,7 @@ public class ChatsFragment extends Fragment {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Users users = dataSnapshot.getValue(Users.class);
-                    users.getUserId(dataSnapshot.getKey());
+                    users.setUserId(dataSnapshot.getKey());
                     list.add(users);
                 }
                 adapter.notifyDataSetChanged();
