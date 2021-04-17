@@ -36,6 +36,6 @@
             android:layout_height="wrap_content"
             android:paddingTop="0dp"
             android:paddingBottom="2dp"
-            android:text="Last Message" />
+            android:text="No Last Message" />
     </LinearLayout>
 </LinearLayout>

@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.firebase:firebase-storage:19.2.1'
 
     compile ('com.github.thekhaeng:recycler-margin:1.2.1') {
         exclude group: 'com.android.support', module: 'recyclerview-v7'

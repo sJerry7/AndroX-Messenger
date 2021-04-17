@@ -18,10 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
        ActivityMainBinding binding;
-
        FirebaseAuth mauth;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +39,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.settings:
-                Toast.makeText(this, "Coming Soon...", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this,SettingsActivity.class);
+                startActivity(i);
                 break;
+
+            case R.id.groupChat:
+                Intent it1 = new Intent(MainActivity.this,GroupChatActivity.class);
+                startActivity(it1);
+
+                break;
+
             case R.id.logout:
                 mauth.signOut();
                 Toast.makeText(this, "Log Out Successful", Toast.LENGTH_SHORT).show();

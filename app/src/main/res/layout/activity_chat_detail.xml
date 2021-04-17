@@ -25,11 +25,11 @@
         <EditText
             android:id="@+id/etMessage"
             android:layout_width="343dp"
-            android:layout_height="70dp"
+            android:layout_height="64dp"
             android:layout_weight="1"
             android:background="@drawable/bg_et_message"
             android:ems="10"
-            android:hint="  Type a message"
+            android:hint="Type a message"
             android:inputType="textPersonName" />
 
         <ImageView

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.view.View;
 
 import com.example.androxmessenger.Adapters.ChatAdapter;
@@ -70,18 +69,20 @@ public class ChatDetailActivity extends AppCompatActivity {
         binding.chatRecyclerView.setLayoutManager(layoutManager);
 
 
-        final String senderRoom = senderId + receiveid;
-        final String receiverRoom = receiveid + senderId;
-
+        final String senderRoom = senderId + receiveid;         // We created this to know who is sender and who is receiver
+        final String receiverRoom = receiveid + senderId;       //We created this to know about the receiver and sender separately
+                        // senderRoom represents a conversation between senderId --> receiveId
+                        // receiverRoom represents a conversation between receiverId --> senderId
+                       //Following lines are used to show the data from our database to our recyclerView (chats, users)
         db.getReference().child("chats").child(senderRoom).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                messageModels.clear();
+                messageModels.clear();  // To fetch only one message at a time
                 for(DataSnapshot snapshot1 : snapshot.getChildren()){
                     MessageModel model = snapshot1.getValue(MessageModel.class);
-
-                    messageModels.add(model);
-                }
+                    model.setMessageId(snapshot1.getKey());
+                    messageModels.add(model);       // This store each and every message from DB into our arrayList of
+               }                                   //type messageModels
                 chatAdapter.notifyDataSetChanged();         // To update RecyclerView at Runtime
             }
 
@@ -95,11 +96,13 @@ public class ChatDetailActivity extends AppCompatActivity {
         binding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message = binding.etMessage.getText().toString();
-                final MessageModel model = new MessageModel(senderId,message);
+                String message = binding.etMessage.getText().toString();    // USer message is converted into String form
+                final MessageModel model = new MessageModel(senderId,message);  //A message model object is created to store the message
                 model.setTimestamp(new Date().getTime());
-                binding.etMessage.setText("");
+                binding.etMessage.setText("");      // Set the text again to blank
+            // To create node of messages in our database following work is done
 
+                // child("chats") is used to insert a node in our database in chats section
                 db.getReference().child("chats").child(senderRoom).push().setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

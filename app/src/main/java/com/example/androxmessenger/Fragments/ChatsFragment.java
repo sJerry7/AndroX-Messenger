@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.androxmessenger.Adapters.UsersAdapter;
 import com.example.androxmessenger.Models.Users;
 import com.example.androxmessenger.databinding.FragmentChatsBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,10 +41,10 @@ public class ChatsFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentChatsBinding.inflate(inflater, container, false);
         db = FirebaseDatabase.getInstance();
-        UsersAdapter adapter = new UsersAdapter(list, getContext());
-        binding.chatRecyclerView.setAdapter(adapter);
+        UsersAdapter adapter = new UsersAdapter(list, getContext());        // We create the User's adapter here
+        binding.chatRecyclerView.setAdapter(adapter);               // and set our chatRecyclerView using this adapter
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());      // It will manage all the Linear Layouts used in our system
 
         binding.chatRecyclerView.setLayoutManager(layoutManager);
 //        binding.chatRecyclerView.addItemDecoration( new LayoutMarginDecoration( 1, 8 ) );
@@ -52,11 +53,12 @@ public class ChatsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Users users = dataSnapshot.getValue(Users.class);
-                    users.setUserId(dataSnapshot.getKey());
-                    list.add(users);
-                }
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){       // It takes the data from the database
+                    Users users = dataSnapshot.getValue(Users.class);           // And creates a User Entity
+                    users.setUserId(dataSnapshot.getKey());             //   Set its ID which is given by firebase by default
+                    if(!users.getUserId().equals(FirebaseAuth.getInstance().getUid()))
+                    list.add(users);                            // Add it in a list of type Users
+                }                                               // NOw go to UsersAdapter
                 adapter.notifyDataSetChanged();
             }
 

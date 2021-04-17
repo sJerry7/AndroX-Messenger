@@ -57,6 +57,14 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(binding.etEmail.getText().toString().isEmpty()){
+                    binding.etEmail.setError("Enter Your Email");
+                    return;
+                }
+                if(binding.etPassword.getText().toString().isEmpty()){
+                    binding.etPassword.setError("Enter Your Password");
+                    return;
+                }
                 pd.show();
                 mauth.signInWithEmailAndPassword(binding.etEmail.getText().toString(),binding.etPassword.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
